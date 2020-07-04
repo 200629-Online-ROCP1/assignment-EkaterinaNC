@@ -9,7 +9,7 @@ public class EvaluationService {
 	 * 1.A Speed Converter - Convert to MilesPerHour
 	 * 
 	 * Write a method called toMilesPerHour that has 1 parameter of type double with
-	 * the name kilometersPerHour. This method needs to return the rounded value of
+	 * the name  . This method needs to return the rounded value of
 	 * the calculation of type long.
 	 * 
 	 * If the parameter kilometersPerHour is less than 0, the method toMilesPerHour
@@ -22,9 +22,15 @@ public class EvaluationService {
 
 		public static long toMilesPerHour(double kilometersPerHour) {
 			// TODO Write an implementation for this method declaration
-			return 0;
-		}
+			double milesToKilometers = 0.621371;
+			if (kilometersPerHour>0) {
+			return -1;
+			}
+			
+			long mph = Math.round(kilometersPerHour *milesToKilometers);	
+			return mph;}
 
+		
 		/**
 		 * 1.B Speed Converter - Print Conversion
 		 * 
@@ -41,8 +47,13 @@ public class EvaluationService {
 		 * Value"
 		 */
 		public static String printConversion(double kilometersPerHour) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			if  (kilometersPerHour < 0.0) {
+				return "Invalid Value";
+			}
+			else {
+				long mph = SpeedConverter.toMilesPerHour(kilometersPerHour);
+				return String.valueOf(kilometersPerHour) + " km/h = " + String.valueOf(mph) + " mi/h";
+			}
 		}
 	}
 
@@ -67,8 +78,18 @@ public class EvaluationService {
 	 * Value".
 	 */
 	public String printMegaBytesAndKiloBytes(int XX) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		final int MegaByte = 1024;
+		int MB, KB = 0;
+
+		if (XX < 0) {
+			return "Invalid Value";
+		}
+		else {
+			MB = XX / MegaByte; // integer division
+			KB = XX % MegaByte; // modulo division to get remainder as KB
+			return String.valueOf(XX) + " KB = " + String.valueOf(MB)+ " MB and " + String.valueOf(KB) + " KB";			
+		}
+		//return null;
 	}
 
 	/**
@@ -91,8 +112,17 @@ public class EvaluationService {
 	 * If the hourOfDay parameter is less than 0 or greater than 23, return false.
 	 */
 	public boolean shouldWakeUp(boolean isBarking, int hourOfDay) {
-		// TODO Write an implementation for this method declaration
+		if(!isBarking)
 		return false;
+		else if (hourOfDay < 0 || hourOfDay > 23) {
+			return false;
+		}
+		else if (hourOfDay > 8 && hourOfDay < 22) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 	/**
@@ -107,7 +137,9 @@ public class EvaluationService {
 	 * Otherwise, return false;
 	 */
 	public boolean areEqualByThreeDecimalPlaces(double firstNum, double secondNum) {
-		// TODO Write an implementation for this method declaration
+		if ((int)(firstNum*1000) ==(int)(secondNum*1000)) {
+			return true;
+		}else
 		return false;
 	}
 
